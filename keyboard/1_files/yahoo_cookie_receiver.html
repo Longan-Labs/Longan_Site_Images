@@ -1,0 +1,52 @@
+
+<!-- saved from url=(0095)https://www.tumblr.com/yahoo_cookie_receiver.html?SIG=10v1fuv03;x-cookie=n671r8cpvvvga&o=3&f=au -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script>
+        function make_cookie(x_cookie) {
+            var expire_seconds = 3600 * 24 * 365; // 1 year
+            var name = 'yx';
+            var value = x_cookie;
+            var ex_date = new Date();
+            var path = '/';
+            // set as false for now until https everywhere
+            var is_secure = false;
+            // var is_secure = (location.protocol == 'https:') ? true : false;
+            var domain = 'www.tumblr.com';
+            ex_date.setTime(ex_date.getTime() + (expire_seconds * 1000));
+
+            document.cookie = name + "=" + escape(value)
+                            + ((expire_seconds == null) ? "" : ";expires=" + ex_date.toGMTString())
+                            + ';path=' + path
+                            + ((is_secure === false) ? '' : ';secure')
+                            + ((domain === '') ? '' : ';domain=' + domain);
+        }
+
+        function get_x_cookie() {
+            // Check to make sure request is coming from www
+            var referrer = document.referrer;
+            if ( !(referrer === 'https://www.tumblr.com' || referrer.indexOf('https://www.tumblr.com/') === 0) ) return;
+
+            var yahoo_string = location.search;
+            // trim off the ? (not really necessary)
+            if (yahoo_string && yahoo_string[0] == '?') yahoo_string = yahoo_string.substring(1, yahoo_string.length);
+
+            // ; is the separator as the cookie can contain &s
+            // 0 = sig
+            // 1 = x-cookie
+            yahoo_parts = yahoo_string.split(';');
+            if (yahoo_parts.length >= 2) {
+                x_cookie = yahoo_parts[1];
+                if (x_cookie.indexOf('x-cookie=') === 0) {
+                    // "x-cookie=" is 9 chars and the value should not exceed 500 characters
+                    x_cookie = x_cookie.substring(9, Math.min(x_cookie.length, 509));
+                    make_cookie(x_cookie);
+                }
+            }
+        }
+
+        get_x_cookie();
+    </script>
+</head>
+<body>
+
+<audio controls="controls" style="display: none;"></audio></body><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></html>
